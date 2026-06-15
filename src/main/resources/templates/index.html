@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head><title>RFID Register - Spring Boot</title></head>
+<body>
+<h2>🔐 Register New Card</h2>
+<input id="name" placeholder="Full Name" required><br>
+<input id="age" type="number" placeholder="Age"><br>
+<button onclick="register()">🚀 Register</button>
+<div id="status" style="margin-top:20px"></div>
+
+<script>
+    const API = "http://172.20.10.7:8081/api";
+
+    async function register() {
+        const name = document.getElementById("name").value;
+        const age = document.getElementById("age").value;
+        const status = document.getElementById("status");
+
+        if (!name) return alert("Enter name");
+
+        status.innerHTML = "⏳ Sending command...";
+
+        const res = await fetch(`${API}/register/start`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({userName: name, age: age ? parseInt(age) : null})
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+            status.innerHTML = `✅ Command sent!<br>Scan card on ESP32 within ${data.timeout}s<br><small>Session: ${data.sessionId}</small>`;
+        } else {
+            status.innerHTML = `❌ Error: ${data.message || "Failed"}`;
+        }
+    }
+</script>
+</body>
+</html>

@@ -317,3 +317,117 @@ body{
   font-size: 16px;
   font-weight: bold;
 }
+
+/* Enhanced Status Details */
+.status-details {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.status-detail {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  padding-left: 5px;
+  border-left: 2px solid rgba(0, 195, 255, 0.3);
+}
+
+.status-detail:nth-child(1) {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.timestamp-container {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timestamp {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  font-style: italic;
+}
+
+.scan-instruction {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: rgba(0, 195, 255, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(0, 195, 255, 0.2);
+}
+
+.scan-instruction small {
+  color: rgba(0, 195, 255, 0.8);
+  font-size: 11px;
+}
+
+/* Status-specific colors */
+.status-success .status-icon {
+  color: #22c55e;
+}
+
+.status-error .status-icon {
+  color: #ef4444;
+}
+
+.status-warning .status-icon {
+  color: #facc15;
+}
+
+.status-info .status-icon {
+  color: #00c3ff;
+}
+
+/* Access Control Specific */
+.access-id {
+  margin-top: 5px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: monospace;
+}
+
+/* Door Status Specific */
+.countdown-display {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: rgba(34, 197, 94, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.countdown-display small {
+  color: #22c55e;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.door-instruction {
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: rgba(255, 193, 7, 0.1);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 193, 7, 0.2);
+}
+
+.door-instruction small {
+  color: #ffc107;
+  font-size: 11px;
+}
+
+/* Door Status Colors */
+.door-locked .status-icon {
+  color: #3b82f6;
+}
+
+.door-open .status-icon {
+  color: #22c55e;
+}
+
+.door-warning .status-icon {
+  color: #f59e0b;
+}
+
+.door-error .status-icon {
+  color: #ef4444;
+}

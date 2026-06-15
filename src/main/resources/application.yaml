@@ -1,0 +1,56 @@
+# ================= Server Configuration =================
+server:
+  port: 8081
+  address: 0.0.0.0
+
+# ================= CORS Configuration =================
+app:
+  cors:
+    allowed-origins: "*"
+
+# ================= Database Configuration - SQLite =================
+spring:
+  datasource:
+    url: jdbc:sqlite:access.db
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    open-in-view: false  # Prevent lazy-loading issues
+
+# ================= MQTT Configuration =================
+mqtt:
+  broker-url: tcp://10.81.117.180:1883
+  client-id: RFID-Server-Spring
+  topic:
+    check: access/check
+    response: access/response
+    mode-set: access/mode/set
+    scan-result: access/scan_result
+  qos: 1
+  timeout: 30
+
+# ================= Logging Configuration =================
+logging:
+  level:
+    root: INFO
+    com.rfid.rfid_control: DEBUG
+    org.eclipse.paho: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} | %-5level | %logger{36} - %msg%n"
+  file:
+    name: logs/access-control.log
+    max-size: 10MB
+    max-history: 7
+
+# ================= Actuator (Optional - for health checks) =================
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
