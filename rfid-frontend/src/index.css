@@ -227,3 +227,93 @@ body{
   color:#ef4444;
   font-weight:bold;
 }
+
+/* DASHBOARD ENHANCEMENTS */
+
+.info-banner {
+  background: rgba(255, 193, 7, 0.1);
+  border: 1px solid rgba(255, 193, 7, 0.3);
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-bottom: 25px;
+  color: #ffc107;
+}
+
+.info-banner small {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}
+
+.count {
+  font-size: 36px;
+  font-weight: bold;
+  color: #00c3ff;
+  margin-bottom: 5px;
+}
+
+.mock-indicator {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  font-style: italic;
+}
+
+.status-display {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-icon {
+  font-size: 24px;
+}
+
+.status-text {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.retry-btn {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background: rgba(0, 195, 255, 0.2);
+  border: 1px solid rgba(0, 195, 255, 0.4);
+  color: #00c3ff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.retry-btn:hover {
+  background: rgba(0, 195, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+/* ESP32 Access Status Styles */
+.na {
+  color: rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
+.access-name {
+  margin-top: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.access-message {
+  margin-top: 8px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+  font-style: italic;
+}
+
+/* Status colors for ESP32 */
+.card .status-display .status-icon {
+  font-size: 20px;
+}
+
+.card .status-display .status-text {
+  font-size: 16px;
+  font-weight: bold;
+}
