@@ -1,0 +1,181 @@
+2026-06-17T12:41:40.815+05:00  INFO 24420 --- [main] c.r.rfid_control.RfidControlApplication  : Starting RfidControlApplication using Java 25.0.2 with PID 24420 (F:\Courses\UUST 302B THIRD YEAR\INTERNETOFTHINGS\Final Project\rfid-control\target\classes started by W11 in F:\Courses\UUST 302B THIRD YEAR\INTERNETOFTHINGS\Final Project\rfid-control)
+2026-06-17T12:41:40.822+05:00 DEBUG 24420 --- [main] c.r.rfid_control.RfidControlApplication  : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-06-17T12:41:40.823+05:00  INFO 24420 --- [main] c.r.rfid_control.RfidControlApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-06-17T12:41:41.754+05:00  INFO 24420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-17T12:41:41.829+05:00  INFO 24420 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 2 JPA repository interfaces.
+2026-06-17T12:41:42.411+05:00  INFO 24420 --- [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-06-17T12:41:42.429+05:00  INFO 24420 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-17T12:41:42.429+05:00  INFO 24420 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-17T12:41:42.501+05:00  INFO 24420 --- [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1621 ms
+2026-06-17T12:41:42.678+05:00  INFO 24420 --- [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-17T12:41:42.764+05:00  INFO 24420 --- [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-06-17T12:41:43.324+05:00  INFO 24420 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-17T12:41:43.368+05:00  INFO 24420 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-17T12:41:43.526+05:00  INFO 24420 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@6e794f53
+2026-06-17T12:41:43.528+05:00  INFO 24420 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-17T12:41:43.609+05:00  INFO 24420 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:sqlite:access.db]
+	Database driver: SQLite JDBC
+	Database dialect: SQLiteDialect
+	Database version: 3.45.1
+	Default catalog/schema: undefined/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: SERIALIZABLE [default SERIALIZABLE]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-17T12:41:44.954+05:00  INFO 24420 --- [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-17T12:41:45.005+05:00  INFO 24420 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-17T12:41:45.108+05:00  INFO 24420 --- [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-17T12:41:45.743+05:00  INFO 24420 --- [main] c.rfid.rfid_control.service.MqttService  : MQTT Connected to tcp://10.81.117.180:1883
+2026-06-17T12:41:45.814+05:00  INFO 24420 --- [main] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page: class path resource [static/index.html]
+2026-06-17T12:41:46.166+05:00  INFO 24420 --- [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/'
+2026-06-17T12:41:46.172+05:00  INFO 24420 --- [main] c.r.rfid_control.RfidControlApplication  : Started RfidControlApplication in 5.902 seconds (process running for 6.358)
+2026-06-17T12:42:01.872+05:00  INFO 24420 --- [http-nio-0.0.0.0-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-17T12:42:01.872+05:00  INFO 24420 --- [http-nio-0.0.0.0-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-17T12:42:01.874+05:00  INFO 24420 --- [http-nio-0.0.0.0-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-06-17T13:14:09.116+05:00 ERROR 24420 --- [MQTT Rec: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : MQTT connection lost: Connection lost
+2026-06-17T13:17:34.800+05:00  INFO 24420 --- [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-17T13:17:34.807+05:00  INFO 24420 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-06-17T13:17:34.811+05:00  INFO 24420 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-17T13:17:34.814+05:00  INFO 24420 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-17T13:17:34.815+05:00  INFO 24420 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2026-06-17T13:17:43.428+05:00  INFO 21436 --- [main] c.r.rfid_control.RfidControlApplication  : Starting RfidControlApplication using Java 25.0.2 with PID 21436 (F:\Courses\UUST 302B THIRD YEAR\INTERNETOFTHINGS\Final Project\rfid-control\target\classes started by W11 in F:\Courses\UUST 302B THIRD YEAR\INTERNETOFTHINGS\Final Project\rfid-control)
+2026-06-17T13:17:43.430+05:00 DEBUG 21436 --- [main] c.r.rfid_control.RfidControlApplication  : Running with Spring Boot v4.0.6, Spring v7.0.7
+2026-06-17T13:17:43.431+05:00  INFO 21436 --- [main] c.r.rfid_control.RfidControlApplication  : No active profile set, falling back to 1 default profile: "default"
+2026-06-17T13:17:44.168+05:00  INFO 21436 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-06-17T13:17:44.222+05:00  INFO 21436 --- [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 45 ms. Found 2 JPA repository interfaces.
+2026-06-17T13:17:44.699+05:00  INFO 21436 --- [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8081 (http)
+2026-06-17T13:17:44.715+05:00  INFO 21436 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-06-17T13:17:44.716+05:00  INFO 21436 --- [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.21]
+2026-06-17T13:17:44.776+05:00  INFO 21436 --- [main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 1295 ms
+2026-06-17T13:17:44.951+05:00  INFO 21436 --- [main] org.hibernate.orm.jpa                    : HHH008540: Processing PersistenceUnitInfo [name: default]
+2026-06-17T13:17:45.059+05:00  INFO 21436 --- [main] org.hibernate.orm.core                   : HHH000001: Hibernate ORM core version 7.2.12.Final
+2026-06-17T13:17:45.558+05:00  INFO 21436 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-06-17T13:17:45.599+05:00  INFO 21436 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-06-17T13:17:45.698+05:00  INFO 21436 --- [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@7aa3857b
+2026-06-17T13:17:45.700+05:00  INFO 21436 --- [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-06-17T13:17:45.752+05:00  INFO 21436 --- [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [jdbc:sqlite:access.db]
+	Database driver: SQLite JDBC
+	Database dialect: SQLiteDialect
+	Database version: 3.45.1
+	Default catalog/schema: undefined/undefined
+	Autocommit mode: undefined/unknown
+	Isolation level: SERIALIZABLE [default SERIALIZABLE]
+	JDBC fetch size: none
+	Pool: DataSourceConnectionProvider
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-06-17T13:17:46.759+05:00  INFO 21436 --- [main] org.hibernate.orm.core                   : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-06-17T13:17:46.805+05:00  INFO 21436 --- [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-06-17T13:17:46.888+05:00  INFO 21436 --- [main] o.s.d.j.r.query.QueryEnhancerFactories   : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-06-17T13:17:47.449+05:00  INFO 21436 --- [main] c.rfid.rfid_control.service.MqttService  : MQTT Connected to tcp://10.81.117.180:1883
+2026-06-17T13:17:47.502+05:00  INFO 21436 --- [main] o.s.b.w.a.WelcomePageHandlerMapping      : Adding welcome page: class path resource [static/index.html]
+2026-06-17T13:17:47.772+05:00  INFO 21436 --- [main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8081 (http) with context path '/'
+2026-06-17T13:17:47.778+05:00  INFO 21436 --- [main] c.r.rfid_control.RfidControlApplication  : Started RfidControlApplication in 4.979 seconds (process running for 5.67)
+2026-06-17T13:18:11.512+05:00  INFO 21436 --- [http-nio-0.0.0.0-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-06-17T13:18:11.512+05:00  INFO 21436 --- [http-nio-0.0.0.0-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-06-17T13:18:11.515+05:00  INFO 21436 --- [http-nio-0.0.0.0-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-06-17T13:23:36.664+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [access/check] C9F026B5
+2026-06-17T13:23:36.779+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : C9F026B5 -> ALLOWED
+2026-06-17T13:23:41.840+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-59,"door_state":"OPEN","door_open_for":4,"door_closes_in":5,"scan_mode":"ACCESS","timestamp":10003}
+2026-06-17T13:23:41.849+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: OPEN
+2026-06-17T13:23:51.840+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-59,"door_state":"TIMEOUT","scan_mode":"ACCESS","timestamp":20016}
+2026-06-17T13:23:51.841+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: TIMEOUT
+2026-06-17T13:23:57.182+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [access/check] 49F008B3
+2026-06-17T13:23:57.309+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : 49F008B3 -> ALLOWED
+2026-06-17T13:24:01.855+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-77,"door_state":"OPEN","door_open_for":4,"door_closes_in":5,"scan_mode":"ACCESS","timestamp":30027}
+2026-06-17T13:24:01.856+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: OPEN
+2026-06-17T13:24:11.866+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-66,"door_state":"TIMEOUT","scan_mode":"ACCESS","timestamp":40040}
+2026-06-17T13:24:11.866+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: TIMEOUT
+2026-06-17T13:24:21.928+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-80,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":50104}
+2026-06-17T13:24:21.928+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:24:32.064+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-69,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":60235}
+2026-06-17T13:24:32.064+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:24:42.191+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-61,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":70363}
+2026-06-17T13:24:42.191+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:24:52.318+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-66,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":80492}
+2026-06-17T13:24:52.318+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:25:01.613+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [access/check] C9F026B5
+2026-06-17T13:25:01.737+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : C9F026B5 -> ALLOWED
+2026-06-17T13:25:02.325+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-50,"door_state":"OPEN","door_open_for":0,"door_closes_in":9,"scan_mode":"ACCESS","timestamp":90499}
+2026-06-17T13:25:02.325+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: OPEN
+2026-06-17T13:25:12.338+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-75,"door_state":"TIMEOUT","scan_mode":"ACCESS","timestamp":100512}
+2026-06-17T13:25:12.338+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: TIMEOUT
+2026-06-17T13:25:22.457+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-63,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":110631}
+2026-06-17T13:25:22.457+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:25:32.295+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [access/check] 49F008B3
+2026-06-17T13:25:32.464+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : 49F008B3 -> ALLOWED
+2026-06-17T13:25:32.832+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-55,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":121007}
+2026-06-17T13:25:32.832+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:25:42.842+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-57,"door_state":"OPEN","door_open_for":9,"door_closes_in":0,"scan_mode":"ACCESS","timestamp":131017}
+2026-06-17T13:25:42.843+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: OPEN
+2026-06-17T13:25:52.894+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-57,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":141068}
+2026-06-17T13:25:52.894+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:26:03.024+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-56,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":151197}
+2026-06-17T13:26:03.024+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:26:13.151+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-53,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":161326}
+2026-06-17T13:26:13.151+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:26:23.282+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-54,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":171455}
+2026-06-17T13:26:23.282+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:26:33.415+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-58,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":181583}
+2026-06-17T13:26:33.415+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:26:43.538+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-63,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":191712}
+2026-06-17T13:26:43.538+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:26:53.667+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.80","wifi_strength":-68,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":201841}
+2026-06-17T13:26:53.668+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:30:21.180+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [access/check] C9F026B5
+2026-06-17T13:30:21.317+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : C9F026B5 -> ALLOWED
+2026-06-17T13:30:25.386+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-57,"door_state":"OPEN","door_open_for":3,"door_closes_in":6,"scan_mode":"ACCESS","timestamp":10004}
+2026-06-17T13:30:25.386+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: OPEN
+2026-06-17T13:30:35.386+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-51,"door_state":"TIMEOUT","scan_mode":"ACCESS","timestamp":20008}
+2026-06-17T13:30:35.386+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: TIMEOUT
+2026-06-17T13:30:45.390+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-61,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":30012}
+2026-06-17T13:30:45.391+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:30:52.799+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [access/check] 49F008B3
+2026-06-17T13:30:52.898+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : 49F008B3 -> ALLOWED
+2026-06-17T13:30:55.398+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-49,"door_state":"OPEN","door_open_for":2,"door_closes_in":7,"scan_mode":"ACCESS","timestamp":40022}
+2026-06-17T13:30:55.398+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: OPEN
+2026-06-17T13:31:05.403+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-46,"door_state":"TIMEOUT","scan_mode":"ACCESS","timestamp":50026}
+2026-06-17T13:31:05.403+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: TIMEOUT
+2026-06-17T13:31:09.965+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [access/check] C9F026B5
+2026-06-17T13:31:10.072+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : C9F026B5 -> ALLOWED
+2026-06-17T13:31:15.418+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-50,"door_state":"OPEN","door_open_for":4,"door_closes_in":5,"scan_mode":"ACCESS","timestamp":60029}
+2026-06-17T13:31:15.418+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: OPEN
+2026-06-17T13:31:25.415+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-49,"door_state":"TIMEOUT","scan_mode":"ACCESS","timestamp":70033}
+2026-06-17T13:31:25.416+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: TIMEOUT
+2026-06-17T13:31:26.997+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [access/check] 49F008B3
+2026-06-17T13:31:27.123+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : 49F008B3 -> ALLOWED
+2026-06-17T13:31:35.420+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-54,"door_state":"OPEN","door_open_for":7,"door_closes_in":2,"scan_mode":"ACCESS","timestamp":80041}
+2026-06-17T13:31:35.421+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: OPEN
+2026-06-17T13:31:45.535+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-50,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":90157}
+2026-06-17T13:31:45.535+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:31:55.711+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-56,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":100295}
+2026-06-17T13:31:55.711+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:32:05.805+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-51,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":110424}
+2026-06-17T13:32:05.805+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:32:15.857+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-61,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":120473}
+2026-06-17T13:32:15.857+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:32:25.890+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-57,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":130512}
+2026-06-17T13:32:25.890+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T13:32:31.425+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [access/check] 49F008B3
+2026-06-17T13:32:31.577+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : 49F008B3 -> ALLOWED
+2026-06-17T13:32:35.981+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-70,"door_state":"OPEN","door_open_for":3,"door_closes_in":6,"scan_mode":"ACCESS","timestamp":140519}
+2026-06-17T13:32:35.982+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: OPEN
+2026-06-17T13:32:45.903+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-70,"door_state":"TIMEOUT","scan_mode":"ACCESS","timestamp":150524}
+2026-06-17T13:32:45.903+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: TIMEOUT
+2026-06-17T13:32:49.519+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [access/check] C9F026B5
+2026-06-17T13:32:49.667+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : C9F026B5 -> ALLOWED
+2026-06-17T13:32:55.918+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-62,"door_state":"OPEN","door_open_for":5,"door_closes_in":4,"scan_mode":"ACCESS","timestamp":160532}
+2026-06-17T13:32:55.919+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: OPEN
+2026-06-17T13:33:06.033+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : [esp32/status] {"device_id":"ESP32-RFID-01","ip_address":"10.81.117.243","wifi_strength":-60,"door_state":"LOCKED","scan_mode":"ACCESS","timestamp":170652}
+2026-06-17T13:33:06.034+05:00  INFO 21436 --- [MQTT Call: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : ESP32 Status Updated - Door: LOCKED
+2026-06-17T23:27:02.536+05:00 ERROR 21436 --- [MQTT Rec: RFID-Server-Spring] c.rfid.rfid_control.service.MqttService  : MQTT connection lost: Connection lost
+2026-06-17T23:27:03.264+05:00  WARN 21436 --- [HikariPool-1:housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=9h53m17s367ms486µs900ns).
+2026-06-17T23:27:39.609+05:00  INFO 21436 --- [SpringApplicationShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-06-17T23:27:39.622+05:00  INFO 21436 --- [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-06-17T23:27:39.629+05:00  INFO 21436 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-06-17T23:27:39.632+05:00  INFO 21436 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-06-17T23:27:39.634+05:00  INFO 21436 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

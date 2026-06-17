@@ -15,7 +15,7 @@
 
 // WiFi & MQTT
 const char *ssid = "Only";
-const char *password = "yaser1234";
+const char *password = "123456789";
 const char *mqtt_server = "10.81.117.180";
 const int mqtt_port = 1883;
 
