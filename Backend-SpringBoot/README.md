@@ -1,48 +1,58 @@
-# RFID Access Control System 🚪📡
+# RFID Access Control System - Backend 🚪☕
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Java](https://img.shields.io/badge/Java-25-orange?logo=openjdk)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.6-brightgreen?logo=spring-boot)](https://spring.io/projects/spring-boot)
-[![React](https://img.shields.io/badge/React-19.2.6-blue?logo=react)](https://react.dev/)
-[![ESP32](https://img.shields.io/badge/Platform-ESP32-blue?logo=espressif)](https://www.espressif.com/en/products/socs/esp32)
 [![MQTT](https://img.shields.io/badge/Protocol-MQTT-orange?logo=mqtt)](https://mqtt.org/)
 
-> **IoT Course Final Project** - A comprehensive RFID-based access control system integrating Spring Boot backend, React frontend, and ESP32 hardware with MQTT communication.
+> **IoT Course Final Project** - Spring Boot backend service for RFID-based access control system with MQTT communication and SQLite persistence.
 
 ---
 
 ## 📖 Overview
 
-This project implements a complete **RFID Access Control System** for the UUST 302B Internet of Things course. The system manages personnel identification through RFID cards, controls physical door access via servo motors, and provides real-time monitoring through a modern web interface.
+This is the **backend component** of a comprehensive RFID Access Control System developed for the UUST 302B Internet of Things course. The Spring Boot application provides RESTful APIs for managing personnel identification through RFID cards, handles MQTT communication with ESP32 hardware devices, and maintains data persistence using SQLite.
 
 ### 🎯 Key Features
 
-- ✅ **Real-time Access Control** - Instant card verification and door unlock
-- ✅ **Web-Based Management** - Register cards, view logs, monitor system status
-- ✅ **ESP32 Integration** - Hardware control with MFRC522 RFID reader
-- ✅ **MQTT Communication** - Reliable IoT messaging protocol
-- ✅ **SQLite Database** - Lightweight data persistence
-- ✅ **Responsive UI** - Modern React interface with live updates
-- ✅ **Auto-Close Safety** - Automatic door closure with timeout warnings
-- ✅ **Mock Data Support** - Offline development capability
+- ✅ **RESTful API** - Comprehensive endpoints for card management and access logs
+- ✅ **MQTT Integration** - Real-time communication with IoT devices via Eclipse Paho
+- ✅ **SQLite Database** - Lightweight embedded database with JPA/Hibernate ORM
+- ✅ **Card Management** - Register, activate, deactivate RFID cards
+- ✅ **Access Logging** - Track all access attempts with timestamps
+- ✅ **Device Status Monitoring** - Query ESP32 device health and connectivity
+- ✅ **CORS Configuration** - Cross-origin support for web clients
+- ✅ **DTO Pattern** - Clean separation between entities and API contracts
 
 ---
 
-## 🏗️ System Architecture
+## 🏗️ Architecture
 
 ```
-┌──────────────┐      HTTP/REST      ┌──────────────┐      MQTT       ┌─────────────┐
-│   React      │ ◄════════════════► │  Spring Boot │ ◄════════════► │   ESP32     │
-│  Frontend    │   (JSON over HTTP)  │   Backend    │  (Pub/Sub)     │  Hardware   │
-│  (Port 5173) │                     │ (Port 8081)  │                │  (WiFi)     │
-└──────────────┘                     └──────┬───────┘                └──────┬──────┘
-                                           │                                │
-                                    ┌──────▼───────┐                ┌──────▼──────┐
-                                    │   SQLite     │                │  MFRC522    │
-                                    │  Database    │                │  RFID Reader│
-                                    └──────────────┘                │  + Servo    │
-                                                                    │  + LEDs     │
-                                                                    └─────────────┘
+┌─────────────────────────────────────────────────────┐
+│              Spring Boot Backend                     │
+│                  (Port 8081)                         │
+│                                                      │
+│  ┌──────────┐    ┌──────────┐    ┌──────────────┐  │
+│  │Controller│───►│ Service  │───►│ Repository   │  │
+│  │  Layer   │    │  Layer   │    │   Layer      │  │
+│  └──────────┘    └──────────┘    └──────┬───────┘  │
+│                                         │           │
+│                                  ┌──────▼───────┐  │
+│                                  │   SQLite     │  │
+│                                  │  Database    │  │
+│                                  └──────────────┘  │
+│                                                    │
+│  ┌──────────────────────────────────────────┐     │
+│  │       MQTT Client (Eclipse Paho)         │     │
+│  └──────────────┬───────────────────────────┘     │
+└─────────────────┼─────────────────────────────────┘
+                  │ MQTT Pub/Sub
+                  ▼
+          ┌──────────────┐
+          │   ESP32      │
+          │  Hardware    │
+          └──────────────┘
 ```
 
 ---
@@ -50,28 +60,32 @@ This project implements a complete **RFID Access Control System** for the UUST 3
 ## 📦 Project Structure
 
 ```
-rfid-control/
-├── rfid-frontend/              # React SPA (Vite)
-│   ├── src/
-│   │   ├── pages/             # Dashboard, Register, Cards list
-│   │   ├── services/          # API integration (Axios)
-│   │   └── App.jsx            # Routing & layout
-│   └── package.json
-│
-├── src/main/java/             # Spring Boot Backend
-│   └── com/rfid/rfid_control/
-│       ├── controller/        # REST API endpoints
-│       ├── service/           # Business logic
-│       ├── repository/        # JPA data access
-│       ├── model/             # Entities & DTOs
-│       └── config/            # CORS, MQTT config
-│
-├── sketch_server-Rfid/        # ESP32 Arduino Sketch
-│   ├── sketch_server-Rfid.ino # Main firmware
-│   └── README.md              # Hardware setup guide
-│
-├── pom.xml                    # Maven dependencies
-└── README.md                  # This file
+Backend-SpringBoot/
+├── src/main/java/com/rfid/rfid_control/
+│   ├── RfidControlApplication.java    # Main application entry point
+│   ├── config/
+│   │   ├── CorsConfig.java            # CORS configuration for cross-origin requests
+│   │   └── MqttConfig.java            # MQTT broker connection settings
+│   ├── controller/
+│   │   └── AccessController.java      # REST API endpoints
+│   ├── service/
+│   │   ├── AccessService.java         # Business logic for card/access management
+│   │   └── MqttService.java           # MQTT message publishing/subscribing
+│   ├── repository/
+│   │   ├── CardRepository.java        # JPA repository for Card entity
+│   │   └── AccessLogRepository.java   # JPA repository for AccessLog entity
+│   ├── model/
+│   │   ├── Card.java                  # Card entity (JPA)
+│   │   ├── AccessLog.java             # Access log entity (JPA)
+│   │   └── dto/
+│   │       ├── RegisterRequest.java   # DTO for registration requests
+│   │       └── RegisterResponse.java  # DTO for registration responses
+│   └── resources/
+│       ├── application.yaml           # Application configuration
+│       ├── static/index.html          # Static HTML fallback
+│       └── templates/index.html       # Thymeleaf template (optional)
+├── pom.xml                            # Maven dependencies
+└── README.md                          # This file
 ```
 
 ---
@@ -81,198 +95,641 @@ rfid-control/
 ### Prerequisites
 
 - ☕ **Java 25+** ([Download](https://www.oracle.com/java/technologies/downloads/))
-- 🟢 **Node.js 18+** ([Download](https://nodejs.org/))
-- 🛠️ **Maven 3.6+** (or use included `mvnw`)
+- 🛠️ **Maven 3.6+** (or use included `mvnw` wrapper)
 - 📡 **MQTT Broker** (Mosquitto recommended)
-- 🔧 **Arduino IDE** (for ESP32 flashing)
+- 💻 **IDE** (IntelliJ IDEA, Eclipse, or VS Code with Java extensions)
 
-### 1️⃣ Backend Setup
+### Installation & Setup
+
+#### Step 1: Clone Repository
 
 ```bash
-# Navigate to project root
-cd rfid-control
+git clone <repository-url>
+cd Smart-Access-Control-System/Backend-SpringBoot
+```
 
-# Build and run Spring Boot backend
+#### Step 2: Configure MQTT Broker
+
+Edit [`src/main/resources/application.yaml`](src/main/resources/application.yaml):
+
+```yaml
+mqtt:
+  broker-url: tcp://localhost:1883  # Change to your MQTT broker address
+  client-id: rfid-backend
+  topics:
+    check: access/check
+    response: access/response
+    mode-set: access/mode/set
+    scan-result: access/scan_result
+    status: esp32/status
+```
+
+> 💡 **Tip**: Install Mosquitto locally for development:
+> ```bash
+> # Ubuntu/Debian
+> sudo apt-get install mosquitto mosquitto-clients
+> sudo systemctl start mosquitto
+> 
+> # macOS
+> brew install mosquitto
+> brew services start mosquitto
+> 
+> # Windows
+> # Download installer from https://mosquitto.org/download/
+> ```
+
+#### Step 3: Build and Run
+
+```bash
+# Using Maven wrapper (recommended)
+./mvnw clean package
 ./mvnw spring-boot:run
+
+# Or using system Maven
+mvn clean package
+mvn spring-boot:run
 
 # Backend will start at http://localhost:8081
 ```
 
-### 2️⃣ Frontend Setup
+#### Step 4: Verify Installation
 
 ```bash
-# In a new terminal
-cd rfid-frontend
+# Health check endpoint
+curl http://localhost:8081/api/health
 
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Frontend will start at http://localhost:5173
+# Expected response: {"status":"UP","timestamp":"2026-06-18T..."}
 ```
 
-### 3️⃣ ESP32 Setup
-
-See detailed instructions in [`sketch_server-Rfid/README.md`](sketch_server-Rfid/README.md)
-
-**Quick Steps:**
-1. Install required libraries (MFRC522, PubSubClient, ArduinoJson, ESP32Servo)
-2. Configure WiFi credentials and MQTT broker in `.ino` file
-3. Wire hardware components (see pin diagram)
-4. Upload sketch to ESP32 via Arduino IDE
-
 ---
 
-## 📚 Documentation
-
-Comprehensive documentation is available for each component:
-
-| Component | Documentation | Description |
-|-----------|--------------|-------------|
-| **Backend** | [README.md](README.md) | Spring Boot API, database schema, MQTT integration |
-| **Frontend** | [rfid-frontend/README.md](rfid-frontend/README.md) | React app setup, pages, API integration |
-| **Hardware** | [sketch_server-Rfid/README.md](sketch_server-Rfid/README.md) | ESP32 wiring, libraries, troubleshooting |
-| **Detailed Docs** | [sketch_server-Rfid/DOCUMENTATION.md](sketch_server-Rfid/DOCUMENTATION.md) | Complete hardware specification |
-
----
-
-## 🔌 API Endpoints
+## 📚 API Documentation
 
 ### Base URL: `http://localhost:8081/api`
 
-| Method | Endpoint | Description | Auth |
-|--------|----------|-------------|------|
-| `GET` | `/health` | Backend health check | ❌ |
-| `POST` | `/register` | Register new RFID card | ❌ |
-| `GET` | `/cards` | Get all registered cards | ❌ |
-| `DELETE` | `/cards/{id}` | Deactivate card | ❌ |
-| `GET` | `/logs` | Get access logs | ❌ |
-| `GET` | `/esp32/status` | Get ESP32 device status | ❌ |
-| `GET` | `/door/status` | Get current door state | ❌ |
+All endpoints return JSON responses. No authentication is required in development mode.
 
-### Example: Register Card
+#### 🔍 Health Check
 
-```bash
-curl -X POST http://localhost:8081/api/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "cardId": "A1B2C3D4",
-    "personName": "John Doe",
-    "email": "john@example.com",
-    "department": "Engineering"
-  }'
+```http
+GET /api/health
+```
+
+**Response:**
+```json
+{
+  "status": "UP",
+  "timestamp": "2026-06-18T10:30:00"
+}
 ```
 
 ---
 
-## 📨 MQTT Topics
+#### 📝 Register New Card
 
-| Topic | Direction | Payload | Purpose |
-|-------|-----------|---------|---------|
-| `access/check` | ESP32 → Server | Plain UID | Verify card access |
-| `access/response` | Server → ESP32 | "ALLOWED"/"DENIED" | Grant/deny access |
-| `access/mode/set` | Server → ESP32 | JSON | Change operation mode |
-| `access/scan_result` | ESP32 → Server | JSON | Registration scan result |
-| `esp32/status` | ESP32 → Server | JSON | Periodic device status |
+```http
+POST /api/register
+Content-Type: application/json
+```
+
+**Request Body:**
+```json
+{
+  "cardId": "A1B2C3D4",
+  "personName": "John Doe",
+  "email": "john@example.com",
+  "department": "Engineering"
+}
+```
+
+**Response (201 Created):**
+```json
+{
+  "success": true,
+  "message": "Card registered successfully",
+  "cardId": "A1B2C3D4",
+  "personName": "John Doe"
+}
+```
+
+**Error Response (409 Conflict):**
+```json
+{
+  "success": false,
+  "message": "Card ID already exists"
+}
+```
+
+---
+
+#### 📋 Get All Registered Cards
+
+```http
+GET /api/cards
+```
+
+**Response (200 OK):**
+```json
+[
+  {
+    "id": 1,
+    "cardId": "A1B2C3D4",
+    "personName": "John Doe",
+    "email": "john@example.com",
+    "department": "Engineering",
+    "isActive": true,
+    "registeredAt": "2026-06-18T10:30:00"
+  },
+  {
+    "id": 2,
+    "cardId": "E5F6G7H8",
+    "personName": "Jane Smith",
+    "email": "jane@example.com",
+    "department": "Marketing",
+    "isActive": true,
+    "registeredAt": "2026-06-17T14:20:00"
+  }
+]
+```
+
+---
+
+#### ❌ Deactivate Card
+
+```http
+DELETE /api/cards/{id}
+```
+
+**Parameters:**
+- `id` (path parameter): Card database ID
+
+**Response (200 OK):**
+```json
+{
+  "success": true,
+  "message": "Card deactivated successfully"
+}
+```
+
+---
+
+#### 📊 Get Access Logs
+
+```http
+GET /api/logs
+```
+
+**Query Parameters:**
+- `limit` (optional): Number of records to return (default: 50)
+- `offset` (optional): Pagination offset (default: 0)
+
+**Response (200 OK):**
+```json
+[
+  {
+    "id": 1,
+    "cardId": "A1B2C3D4",
+    "personName": "John Doe",
+    "accessTime": "2026-06-18T10:45:00",
+    "granted": true,
+    "doorStatus": "OPEN"
+  },
+  {
+    "id": 2,
+    "cardId": "INVALID123",
+    "personName": "Unknown",
+    "accessTime": "2026-06-18T10:46:00",
+    "granted": false,
+    "doorStatus": "CLOSED"
+  }
+]
+```
+
+---
+
+#### 📡 Get ESP32 Device Status
+
+```http
+GET /api/esp32/status
+```
+
+**Response (200 OK):**
+```json
+{
+  "deviceId": "esp32-001",
+  "connected": true,
+  "lastSeen": "2026-06-18T10:50:00",
+  "firmwareVersion": "1.0.0",
+  "wifiSignalStrength": -45,
+  "mode": "NORMAL"
+}
+```
+
+---
+
+#### 🚪 Get Door Status
+
+```http
+GET /api/door/status
+```
+
+**Response (200 OK):**
+```json
+{
+  "doorState": "CLOSED",
+  "lastActivity": "2026-06-18T10:45:00",
+  "autoCloseTimeout": 5
+}
+```
+
+---
+
+## 📨 MQTT Integration
+
+### Configuration
+
+The backend connects to an MQTT broker and subscribes/publishes to specific topics for real-time communication with ESP32 devices.
+
+**Configuration File:** [`src/main/resources/application.yaml`](src/main/resources/application.yaml)
+
+```yaml
+mqtt:
+  broker-url: tcp://localhost:1883
+  client-id: rfid-backend
+  qos: 0
+  topics:
+    check: access/check
+    response: access/response
+    mode-set: access/mode/set
+    scan-result: access/scan_result
+    status: esp32/status
+```
+
+### MQTT Topics
+
+| Topic | Direction | Payload Format | Description |
+|-------|-----------|----------------|-------------|
+| `access/check` | Subscribe (from ESP32) | Plain text UID | Card verification request |
+| `access/response` | Publish (to ESP32) | `"ALLOWED"` or `"DENIED"` | Access decision |
+| `access/mode/set` | Publish (to ESP32) | JSON object | Change device operation mode |
+| `access/scan_result` | Subscribe (from ESP32) | JSON object | Registration scan result |
+| `esp32/status` | Subscribe (from ESP32) | JSON object | Periodic device heartbeat |
+
+### Message Flow Example
+
+**1. Card Verification Request:**
+```
+ESP32 publishes → access/check: "A1B2C3D4"
+Backend receives → Queries database → Checks if card is active
+Backend publishes → access/response: "ALLOWED"
+ESP32 receives → Unlocks door
+```
+
+**2. Device Status Update:**
+```
+ESP32 publishes → esp32/status: {"deviceId":"esp32-001","connected":true,"signal":-45}
+Backend receives → Updates internal device status cache
+Client queries → GET /api/esp32/status → Returns cached status
+```
+
+---
+
+## 🗄️ Database Schema
+
+### Entity: Card
+
+Represents a registered RFID card associated with a person.
+
+| Field | Type | Constraints | Description |
+|-------|------|-------------|-------------|
+| `id` | Long | PK, Auto-increment | Database identifier |
+| `cardId` | String | Unique, Not Null | RFID card UID |
+| `personName` | String | Not Null | Cardholder's name |
+| `email` | String | Nullable | Contact email |
+| `department` | String | Nullable | Organizational unit |
+| `isActive` | Boolean | Default: true | Activation status |
+| `registeredAt` | LocalDateTime | Auto-generated | Registration timestamp |
+
+### Entity: AccessLog
+
+Records each access attempt for auditing purposes.
+
+| Field | Type | Constraints | Description |
+|-------|------|-------------|-------------|
+| `id` | Long | PK, Auto-increment | Log entry identifier |
+| `cardId` | String | Not Null | Scanned card UID |
+| `personName` | String | Nullable | Resolved person name |
+| `accessTime` | LocalDateTime | Auto-generated | Attempt timestamp |
+| `granted` | Boolean | Not Null | Access decision |
+| `doorStatus` | String | Not Null | Resulting door state |
 
 ---
 
 ## 🛠️ Technology Stack
 
-### Backend
+### Core Technologies
+
 - **Language**: Java 25
 - **Framework**: Spring Boot 4.0.6
-- **Database**: SQLite 3.45.1.0 with Hibernate ORM
-- **Messaging**: Eclipse Paho MQTT Client 1.2.5
-- **Build Tool**: Maven
-- **Utilities**: Lombok, Gson, Jackson
+- **Build Tool**: Apache Maven
+- **Database**: SQLite 3.45.1.0
 
-### Frontend
-- **Framework**: React 19.2.6
-- **Build Tool**: Vite 8.0.12
-- **Routing**: React Router DOM 7.17.0
-- **HTTP Client**: Axios 1.17.0
-- **Icons**: React Icons 5.6.0
-- **Linting**: ESLint 10.3.0
+### Dependencies
 
-### Hardware
-- **Microcontroller**: ESP32 DevKit
-- **RFID Reader**: MFRC522 (13.56 MHz)
-- **Actuator**: SG90/MG996R Servo Motor
-- **Indicators**: Green & Red LEDs
-- **Communication**: WiFi + MQTT
+| Library | Version | Purpose |
+|---------|---------|---------|
+| Spring Boot Starter Web | 4.0.6 | REST API framework |
+| Spring Data JPA | 4.0.6 | ORM and repository pattern |
+| Hibernate ORM | 6.x | JPA implementation |
+| SQLite JDBC Driver | 3.45.1.0 | Embedded database connectivity |
+| Eclipse Paho MQTT Client | 1.2.5 | MQTT protocol implementation |
+| Lombok | Latest | Boilerplate code reduction |
+| Gson | Latest | JSON serialization/deserialization |
+| Jackson | Latest | JSON processing |
+| Spring Boot Starter Thymeleaf | 4.0.6 | Template engine (optional) |
 
----
+### Development Tools
 
-## 📸 Screenshots
-
-### Dashboard
-*Real-time system monitoring with door status and ESP32 connectivity*
-
-### Card Registration
-*Simple form-based interface for enrolling new RFID cards*
-
-### Registered Cards
-*Comprehensive list view of all authorized personnel*
+- **Testing**: JUnit 5, Spring Boot Test
+- **Code Quality**: Spring Boot DevTools (hot reload)
+- **Logging**: SLF4J with Logback
 
 ---
 
-## 🔐 Security Considerations
+## 🔧 Configuration
 
-> ⚠️ **Development Mode**: This project is designed for educational purposes. For production deployment, consider:
+### Application Properties
 
-- ✅ Enable HTTPS/TLS for all communications
-- ✅ Implement JWT authentication for API endpoints
-- ✅ Add MQTT broker authentication
-- ✅ Restrict CORS to specific domains
-- ✅ Encrypt sensitive data at rest
-- ✅ Implement rate limiting
-- ✅ Add input validation and sanitization
-- ✅ Use environment variables for secrets
+Located in [`src/main/resources/application.yaml`](src/main/resources/application.yaml):
+
+```yaml
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:sqlite:rfid_access.db
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.community.dialect.SQLiteDialect
+
+mqtt:
+  broker-url: tcp://localhost:1883
+  client-id: rfid-backend
+  qos: 0
+  topics:
+    check: access/check
+    response: access/response
+    mode-set: access/mode/set
+    scan-result: access/scan_result
+    status: esp32/status
+```
+
+### Environment Variables
+
+For production deployment, use environment variables:
+
+```bash
+export MQTT_BROKER_URL=tcp://mqtt.example.com:1883
+export DATABASE_PATH=/var/data/rfid_access.db
+export SERVER_PORT=8081
+```
 
 ---
 
 ## 🧪 Testing
 
-### Backend Tests
+### Run All Tests
+
 ```bash
 ./mvnw test
 ```
 
-### Frontend Tests
+### Run Specific Test Class
+
 ```bash
-cd rfid-frontend
-npm test
+./mvnw test -Dtest=AccessControllerTest
 ```
 
-### Hardware Testing
-- Use Serial Monitor (115200 baud) for ESP32 debugging
-- Test MQTT messages with Mosquitto CLI tools
-- Verify RFID reader with diagnostic checks
+### Test Coverage Report
+
+```bash
+./mvnw jacoco:report
+# Open target/site/jacoco/index.html in browser
+```
+
+### Manual API Testing
+
+Using cURL:
+
+```bash
+# Register a card
+curl -X POST http://localhost:8081/api/register \
+  -H "Content-Type: application/json" \
+  -d '{"cardId":"TEST123","personName":"Test User","email":"test@example.com","department":"QA"}'
+
+# Get all cards
+curl http://localhost:8081/api/cards
+
+# Get access logs
+curl http://localhost:8081/api/logs?limit=10
+
+# Check health
+curl http://localhost:8081/api/health
+```
+
+Using Postman/Insomnia:
+- Import collection from `postman_collection.json` (if available)
+- Set base URL to `http://localhost:8081/api`
+- Use JSON body format for POST requests
+
+---
+
+## 📊 Monitoring & Logging
+
+### Application Logs
+
+Logs are output to console by default. Configure file logging in `application.yaml`:
+
+```yaml
+logging:
+  file:
+    name: logs/rfid-backend.log
+  level:
+    com.rfid.rfid_control: DEBUG
+    org.springframework.web: INFO
+    org.eclipse.paho: WARN
+```
+
+### Key Log Events
+
+- **MQTT Connection**: Broker connection status
+- **Card Registration**: New card creation events
+- **Access Decisions**: ALLOWED/DENIED decisions with card IDs
+- **Database Operations**: SQL query execution (when `show-sql: true`)
+- **Errors**: Exception stack traces and error details
+
+### Health Monitoring
+
+Monitor backend health via `/api/health` endpoint. For production, consider integrating with:
+- Spring Boot Actuator
+- Prometheus + Grafana
+- ELK Stack (Elasticsearch, Logstash, Kibana)
+
+---
+
+## 🔐 Security Considerations
+
+> ⚠️ **Development Mode Warning**: This backend is designed for educational purposes. Production deployment requires additional security measures:
+
+### Current State
+- ❌ No authentication/authorization
+- ❌ No HTTPS/TLS encryption
+- ❌ No input validation beyond basic constraints
+- ❌ No rate limiting
+- ❌ Hardcoded MQTT credentials (if any)
+
+### Recommended Improvements
+
+1. **Authentication & Authorization**
+   - Implement JWT token-based authentication
+   - Add role-based access control (RBAC)
+   - Secure admin endpoints
+
+2. **Transport Security**
+   - Enable HTTPS with SSL certificates
+   - Use WSS for WebSocket connections
+   - Encrypt MQTT traffic with TLS
+
+3. **Data Protection**
+   - Encrypt sensitive data at rest (AES-256)
+   - Hash passwords if user accounts are added
+   - Sanitize all inputs to prevent injection attacks
+
+4. **API Security**
+   - Add API key authentication
+   - Implement rate limiting (e.g., 100 requests/minute)
+   - Enable CORS only for trusted domains
+   - Add request size limits
+
+5. **MQTT Security**
+   - Enable broker authentication (username/password)
+   - Use client certificates for mutual TLS
+   - Restrict topic permissions per client
+
+6. **Operational Security**
+   - Use environment variables for secrets
+   - Rotate API keys and credentials regularly
+   - Implement audit logging
+   - Set up intrusion detection
+
+---
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+#### 1. MQTT Connection Failed
+
+**Error:** `Unable to connect to MQTT broker`
+
+**Solutions:**
+- Verify MQTT broker is running: `sudo systemctl status mosquitto`
+- Check broker URL in `application.yaml`
+- Ensure firewall allows port 1883
+- Test connection: `mosquitto_sub -t test/topic -h localhost`
+
+#### 2. Database Lock Issues
+
+**Error:** `database is locked`
+
+**Solutions:**
+- Close other applications accessing the database
+- Check file permissions on `.db` file
+- Use connection pooling for high concurrency
+- Consider migrating to PostgreSQL/MySQL for production
+
+#### 3. Port Already in Use
+
+**Error:** `Port 8081 is already in use`
+
+**Solutions:**
+- Kill existing process: `lsof -ti:8081 | xargs kill`
+- Change port in `application.yaml`: `server.port: 8082`
+
+#### 4. Card Not Found in Database
+
+**Issue:** Valid card returns "DENIED"
+
+**Solutions:**
+- Verify card is registered: `GET /api/cards`
+- Check `isActive` field is `true`
+- Confirm card ID matches exactly (case-sensitive)
+- Review access logs: `GET /api/logs`
+
+#### 5. CORS Errors in Browser
+
+**Error:** `Access to fetch has been blocked by CORS policy`
+
+**Solutions:**
+- Verify frontend origin is allowed in [`CorsConfig.java`](src/main/java/com/rfid/rfid_control/config/CorsConfig.java)
+- Check browser console for detailed error
+- Temporarily disable CORS for debugging (not recommended for production)
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
+Contributions are welcome! Please follow these guidelines:
+
+### Development Workflow
 
 1. **Fork** the repository
 2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
-3. **Commit** your changes (`git commit -m 'Add amazing feature'`)
-4. **Push** to the branch (`git push origin feature/amazing-feature`)
-5. **Open** a Pull Request
+3. **Implement** changes following coding standards
+4. **Write** unit tests for new functionality
+5. **Run** tests: `./mvnw test`
+6. **Commit** with meaningful messages (`git commit -m 'Add amazing feature'`)
+7. **Push** to branch (`git push origin feature/amazing-feature`)
+8. **Open** a Pull Request
 
-### Development Guidelines
+### Coding Standards
 
-- Follow existing code style and conventions
-- Write meaningful commit messages
-- Add comments for complex logic
-- Update documentation for new features
-- Test your changes thoroughly
-- Ensure ESLint passes (frontend)
-- Run Maven tests (backend)
+- Follow [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
+- Use descriptive variable and method names
+- Add Javadoc comments for public methods
+- Keep methods small and focused (single responsibility)
+- Use Lombok annotations to reduce boilerplate
+- Write unit tests for service layer logic
+- Validate all input parameters
+
+### Commit Message Convention
+
+```
+type(scope): description
+
+[optional body]
+
+[optional footer]
+```
+
+**Types:** `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+
+**Example:**
+```
+feat(api): add pagination support for access logs
+
+- Added limit and offset query parameters
+- Updated AccessController to handle pagination
+- Added unit tests for paginated queries
+
+Closes #42
+```
 
 ---
 
@@ -287,39 +744,41 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Course**: UUST 302B THIRD YEAR - Internet of Things
 - **Institution**: [Your University Name]
 - **Year**: 2026
-- **Project Type**: Final Course Project
+- **Component**: Backend Service (Spring Boot)
 
 ---
 
 ## 🙏 Acknowledgments
 
 - **Spring Framework** team for the excellent backend framework
-- **React** community for the powerful UI library
-- **Espressif** for the versatile ESP32 platform
-- **Eclipse Foundation** for Paho MQTT client
+- **Eclipse Foundation** for Paho MQTT client library
+- **SQLite** community for lightweight database solution
+- **Hibernate** team for robust ORM implementation
 - **Course instructors** and peers for guidance and support
 - **Open source contributors** whose libraries made this project possible
 
 ---
 
-## 📞 Contact & Support
+## 📞 Support & Resources
 
 - 📧 **Email**: [your.email@example.com]
 - 💬 **Course Forum**: [Forum Link]
 - 🐛 **Issues**: [GitHub Issues](../../issues)
-- 📚 **Documentation**: See individual component READMEs
+- 📚 **Full Project Docs**: [Main README](../README.md)
+- 📖 **Spring Boot Docs**: [spring.io](https://spring.io/projects/spring-boot)
+- 📘 **MQTT Guide**: [mqtt.org](https://mqtt.org/getting-started/)
 
 ---
 
 ## 🌟 Show Your Support
 
-If this project helped you learn about IoT systems, please give it a ⭐️ on GitHub!
+If this backend helped you learn about Spring Boot and IoT integration, please give it a ⭐️ on GitHub!
 
 ---
 
 <div align="center">
 
-**Made with ❤️ for IoT Education**
+**Built with ☕ Spring Boot for IoT Education**
 
 [Report Bug](../../issues) · [Request Feature](../../issues)
 
